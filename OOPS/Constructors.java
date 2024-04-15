@@ -1,4 +1,4 @@
-//Write a program to create a 
+//Write a program to create a constructor
 
 public class Constructors {
     public static void main(String args[]) {
