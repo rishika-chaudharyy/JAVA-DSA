@@ -25,6 +25,7 @@ public class MultiDimensionalArrayList {
         // list 3
         for (int i = 1; i <= 5; i++) {
             list3.add(3 * i);
+
         }
 
         // printing sublists
