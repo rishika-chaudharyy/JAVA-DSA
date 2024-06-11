@@ -3,6 +3,7 @@
 import java.util.*;
 
 public class QueueUsingDeque {
+
     static class Queue {
         Deque<Integer> d = new LinkedList<>();
 
