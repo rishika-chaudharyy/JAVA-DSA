@@ -1,5 +1,3 @@
-//Given an array , output the max/min for subarray [i...j] and update the element at idx
-
 public class MinMaxST {
     static int tree[];
 
@@ -31,7 +29,7 @@ public class MinMaxST {
 
         if (si > qj || sj < qi) {
             return Integer.MIN_VALUE;
-        } else if (si >= qi || sj <= qj) {
+        } else if (si >= qi && sj <= qj) {
             return tree[i];
         } else {
             int mid = (si + sj) / 2;
@@ -41,6 +39,30 @@ public class MinMaxST {
 
             return Math.max(left, right);
         }
+    }
+
+    public static void update(int arr[], int idx, int newVal) {
+        arr[idx] = newVal;
+        int n = arr.length;
+        updateUtil(0, 0, n - 1, idx, newVal);
+    }
+
+    public static void updateUtil(int i, int si, int sj, int idx, int newVal) {
+        if (idx < si || idx > sj) {
+            return;
+        }
+
+        if (si == sj) {
+            tree[i] = newVal;
+        }
+
+        if (si != sj) {
+            tree[i] = Math.max(tree[i], newVal);
+            int mid = (si + sj) / 2;
+            updateUtil(2 * i + 1, si, mid, idx, newVal);
+            updateUtil(2 * i + 2, mid + 1, sj, idx, newVal);
+        }
+
     }
 
     public static void main(String[] args) {
@@ -55,7 +77,11 @@ public class MinMaxST {
         }
 
         int max = getMax(arr, 2, 5);
-        System.out.println(max);
+        System.out.println("Max in range [2, 5]: " + max);
+
+        update(arr, 2, 20);
+        max = getMax(arr, 2, 5);
+        System.out.println("Max in range [2, 5] after update: " + max);
 
     }
 }
